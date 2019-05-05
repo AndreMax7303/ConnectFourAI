@@ -26,7 +26,7 @@ public class ArtificialInteligence {
     }
     
     public static boolean checkWin(char badge, Board board) {
-        return checkHorizontalStreaks(board.gameBoard, badge) || checkVerticalStreaks(board.gameBoard, badge);
+        return checkHorizontalStreaks(board.gameBoard, badge) ||  checkVerticalStreaks(board.gameBoard, badge);
     }
 
     private static boolean checkHorizontalStreaks(char[][] board, char badge) {

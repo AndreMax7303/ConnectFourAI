@@ -18,9 +18,9 @@ public class ArtificialInteligence {
         int sum = 0;
         for (int i = 0; i < 6; i++)
             for (int j = 0; j <7; j++)
-                if (gBoard.gameBoard[i][j] == gBoard.PLAYER1)
+                if (gBoard.gameBoard[i][j] == gBoard.PLAYER2)
                     sum += EVALUATIONTABLE[i][j];
-                else if (gBoard.gameBoard[i][j] == gBoard.PLAYER2)
+                else if (gBoard.gameBoard[i][j] == gBoard.PLAYER1)
                     sum -= EVALUATIONTABLE[i][j];
         return utility + sum;
     }
@@ -75,30 +75,37 @@ public class ArtificialInteligence {
     }
     
     static int minimax(Board gBoard, int depth, int alpha, int beta, boolean maximazingPlayer){
+        int eval;
         if (checkWin(maximazingPlayer? gBoard.PLAYER2:gBoard.PLAYER1, gBoard) || depth == 0){
             return evaluateContent(gBoard);
         }
         if (maximazingPlayer){
+            int maxEvaluation = - 3000;
             for (int i = 0; i < 7; i++){
                 Board board = new Board(gBoard.gameBoard);
                 board.addPiece(i, 2);
-                alpha = Math.max(alpha, minimax(board, depth - 1, alpha, beta, false));
+                eval = minimax(board, depth - 1, alpha, beta, false);
+                maxEvaluation = Math.max(maxEvaluation, eval);
+                alpha = Math.max(alpha, eval);
                 if (beta <= alpha){
-                    return alpha;
+                    break;
                 }
             }
-            return alpha;
+            return maxEvaluation;
         }
         else{
+            int minEvaluation = 3000;
             for (int i = 0; i < 7; i++){
                 Board board = new Board(gBoard.gameBoard);
                 board.addPiece(i, 1);
-                beta = Math.min(beta, minimax(board, depth - 1, alpha, beta, true));
+                eval = minimax(board, depth - 1, alpha, beta, true);
+                minEvaluation = Math.min(minEvaluation, eval);
+                beta = Math.min(beta, eval);
                 if (beta <= alpha){
-                    return beta;
+                    break;
                 }     
             }
-            return beta;
+            return minEvaluation;
         }
     }
 }

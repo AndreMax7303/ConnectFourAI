@@ -27,9 +27,7 @@ public class ConnectFour {
                 while (j < 6 && board.gameBoard[j][i] == board.VAZIO){
                     j++;
                 }
-                Board gBoard = new Board(board.gameBoard);
-                gBoard.addPiece(i, 2);
-                scores[i] = ArtificialInteligence.minimax(gBoard, 10, -3000, 3000, false);
+                scores[i] = ArtificialInteligence.minimax(board, 6, -3000, 3000, true);
                 System.out.println(scores[i]);
                 
             }

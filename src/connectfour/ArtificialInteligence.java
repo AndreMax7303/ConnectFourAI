@@ -26,7 +26,8 @@ public class ArtificialInteligence {
     }
     
     public static boolean checkWin(char badge, Board board) {
-        return checkHorizontalStreaks(board.gameBoard, badge) || checkVerticalStreaks(board.gameBoard, badge);
+        return checkHorizontalStreaks(board.gameBoard, badge)
+            || checkVerticalStreaks(board.gameBoard, badge);
     }
 
     private static boolean checkHorizontalStreaks(char[][] board, char badge) {
@@ -74,36 +75,11 @@ public class ArtificialInteligence {
     }
     
     static int minimax(Board gBoard, int depth, int alpha, int beta, boolean maximazingPlayer){
-<<<<<<< HEAD
-=======
         int eval;
->>>>>>> fcddf1a15ca1afc900775bcafd507de75088ae68
         if (checkWin(maximazingPlayer? gBoard.PLAYER2:gBoard.PLAYER1, gBoard) || depth == 0){
             return evaluateContent(gBoard);
         }
         if (maximazingPlayer){
-<<<<<<< HEAD
-            for (int i = 0; i < 7; i++){
-                Board board = new Board(gBoard.gameBoard);
-                board.addPiece(i, 2);
-                alpha = Math.max(alpha, minimax(board, depth - 1, alpha, beta, false));
-                if (beta <= alpha){
-                    return alpha;
-                }
-            }
-            return alpha;
-        }
-        else{
-            for (int i = 0; i < 7; i++){
-                Board board = new Board(gBoard.gameBoard);
-                board.addPiece(i, 1);
-                beta = Math.min(beta, minimax(board, depth - 1, alpha, beta, true));
-                if (beta <= alpha){
-                    return beta;
-                }     
-            }
-            return beta;
-=======
             int maxEvaluation = - 3000;
             for (int i = 0; i < 7; i++){
                 Board board = new Board(gBoard.gameBoard);
@@ -130,7 +106,6 @@ public class ArtificialInteligence {
                 }     
             }
             return minEvaluation;
->>>>>>> fcddf1a15ca1afc900775bcafd507de75088ae68
         }
     }
 }

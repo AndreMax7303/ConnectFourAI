@@ -82,7 +82,6 @@ public class ArtificialInteligence {
             for (int i = 0; i < 7; i++){
                 Board board = new Board(gBoard.gameBoard);
                 board.addPiece(i, 2);
-                board.showBoard();
                 alpha = Math.max(alpha, minimax(board, depth - 1, alpha, beta, false));
                 if (beta <= alpha){
                     return alpha;
